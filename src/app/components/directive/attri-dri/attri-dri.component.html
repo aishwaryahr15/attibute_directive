@@ -1,0 +1,98 @@
+<div class="mt-2 p-2 bg-secondary text-white rounded">
+    <h1> Attribute Directive</h1>
+    <p>[ngClass],[ngStyle] </p>
+</div>
+<div class="row pt-3">
+    <div class="col-3">
+        <div class="p-3 text-center" [ngClass]="div1Bgcolor">
+            <h4> DIV 1</h4>
+        </div>
+    </div>
+
+    <div class="col-3">
+        <div class="p-3 text-center" [ngClass]="isdiv2Active== true ?'bg-success' : 'bg-warning' ">
+            <h4> DIV 2</h4>
+        </div>
+    </div>
+
+    <div class="col-3">
+        <div class=" p-3 text-center" [ngClass]=" num1==num2? 'bg-secondary text-white' : 'bg-danger text-primary' ">
+            <h4> DIV 3</h4>
+        </div>
+    </div>
+
+    <div class="col-3">
+        <div class=" p-3 text-center" [ngClass]="isactive ? 'bg-primary':'' ">
+            <h4> DIV 4</h4>
+        </div>
+    </div>
+</div>
+
+<div class="row pt-3">
+<div class="col-3 text-center">
+<button class="btn btn-danger" (click)="addRedClass()" > ADD RED</button>
+<button class="btn btn-primary mx-2" (click)="addBlueClass()">ADD BLUE</button>
+</div>
+<div class="col-3 text-center">
+<button class="btn btn-success" (click)="toggleDiv2class()" > Toggle</button>
+</div>
+
+<div class="col-3">
+<div style="display: flex; align-items: center;">
+    <input type="text" [(ngModel)]= "num1" placeholder="NUM1" class="width-50">
+    <input type="text" [(ngModel)]= "num2"  placeholder="NUM2" class="width-50">
+
+</div>
+</div>
+<div class="col-3">
+<div style="display: flex;align-items: center;">
+    <input type="checkbox" [(ngModel)]="isactive"  class="width-50">
+    <select>
+        <option value="">Select State</option>
+        <option value="India">India</option>
+        <option value="USA">USA</option>
+        <option value="Germany">Germany</option>
+    </select>
+</div>
+</div>
+
+</div>
+
+<div class="row pt-4">
+    <div class="col-5">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <!-- <th> Sr NO</th> -->
+                    <th>Name </th>
+                    <th>Gender</th>
+                    <th>City</th>
+                    <th>Status</th>
+                    <th>Total Marks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let stud of studentList"> 
+                    <td> {{stud.name}} </td>
+                    <td> {{stud.city}} </td>
+                    <td [ngStyle]="{'background-color':stud.isactive? 'yellow':'red'}" > 
+                        <span>{{stud.isactive ? 'Active' : 'Deactive'}} </span>
+                    </td>
+                    <td> {{stud.gender}}</td>
+                    <td>
+                        <div class="progress">
+                            <div class="progress-bar" [ngStyle]="{'width':stud.totalmarks+'%'}">{{stud.totalmarks}}</div>
+                          </div>
+                        </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+    <div class="col-5">
+        <div [ngStyle]="customStyle">
+                DIV
+        </div>
+    </div>
+</div>
